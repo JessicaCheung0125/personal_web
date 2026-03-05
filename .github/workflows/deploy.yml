@@ -1,0 +1,31 @@
+可能是因为代码块在你的浏览器或 App 中由于格式问题被过滤了。别担心，我换一种纯文本、不带任何特殊格式的方式发给你。
+
+你可以直接复制下面两条线之间的所有文字：
+
+name: Deploy React to Pages
+
+on:
+push:
+branches: [main]
+
+permissions:
+contents: read
+pages: write
+id-token: write
+
+jobs:
+build_site:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout
+uses: actions/checkout@v4
+
+deploy:
+needs: build_site
+runs-on: ubuntu-latest
+environment:
+name: github-pages
+steps:
+- name: Deploy
+id: deployment
+uses: actions/deploy-pages@v4
